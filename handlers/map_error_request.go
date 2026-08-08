@@ -21,6 +21,10 @@ func GetErrorMap(err error) map[string]string {
 				errorMap[field] = fmt.Sprintf("%s wajib diisi", field)
 			case "oneof":
 				errorMap[field] = fmt.Sprintf("%s harus bernilai salah satu dari: %s", field, fieldErr.Param())
+			case "min":
+				errorMap[field] = fmt.Sprintf("%s minimal %s karakter", field, fieldErr.Param())
+			case "max":
+				errorMap[field] = fmt.Sprintf("%s maksimal %s karakter", field, fieldErr.Param())
 			default:
 				errorMap[field] = fmt.Sprintf("%s tidak valid (%s)", field, fieldErr.Tag())
 			}
