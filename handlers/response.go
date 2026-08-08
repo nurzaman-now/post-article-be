@@ -38,10 +38,12 @@ func ResponseError(ctx *gin.Context, data any, message string, code ...int) {
 }
 
 // ResponseCustom mengirim HTTP status code kustom dengan format APIResponse yang seragam
-func ResponseCustom(ctx *gin.Context, httpCode int, status string, data any, message string) {
-	ctx.JSON(httpCode, APIResponse{
-		Status:  status,
-		Data:    data,
-		Message: message,
+func ResponseValidation(ctx *gin.Context, err error) {
+	reqErr := GetErrorMap(err)
+	reqMessages := MapToString(reqErr)
+	ctx.JSON(422, APIResponse{
+		Status:  "error",
+		Data:    nil,
+		Message: "Data yang di inputkan tidak sesuai: " + reqMessages,
 	})
 }
