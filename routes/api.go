@@ -1,6 +1,8 @@
 package routes
 
 import (
+	"post-article-be/controllers"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,6 +26,21 @@ func SetupRouter() *gin.Engine {
 
 	// Mengaktifkan CORS middleware
 	router.Use(CORSMiddleware())
+
+	// Inisialisasi controller
+	postController := controllers.InitPostController()
+
+	// Setup routes untuk post
+	postRoutes := router.Group("/article")
+	{
+		postRoutes.POST("", postController.Create)
+		// Menggunakan RouteGet dengan catch-all wildcard "/*action" untuk menghindari panic wildcard conflict di Gin.
+		// Gin tidak memperbolehkan dua endpoint dengan format parameter berbeda pada segmen yang sama (misal: /:limit/:offset vs /:id).
+		// RouteGet akan mem-parsing secara dinamis URL path menjadi parameter limit/offset (untuk paging) atau id (untuk detail).
+		postRoutes.GET("/*action", postController.RouteGet)
+		postRoutes.PUT("/:id", postController.Update)
+		postRoutes.DELETE("/:id", postController.Delete)
+	}
 
 	return router
 }
