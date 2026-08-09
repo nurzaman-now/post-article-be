@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "8b51d45c-0b82-4bf1-bf1d-28e442ee0c96",
+		"name": "Post Article API",
+		"description": "Postman Collection for Article Posting API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Article",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Judul artikel minimal 20 karakter dan maximal 200 karakter\",\n    \"content\": \"Lorem ipsum dolor sit amet, proident ullamco exercitation reprehenderit do fugiat. Aliqua reprehenderit labore nisi deserunt culpa magna laborum eu laboris dolore labore. Nostrud mollit labore cillum eu commodo sed ullamco in id cillum ex non.\\nUllamco excepteur sed pariatur irure ad nisi et culpa anim. Irure sunt ea excepteur quis adipiscing ad mollit dolore ullamco duis magna. Eu enim exercitation magna consectetur dolor exercitation adipiscing. Ut anim aliquip exercitation nulla non in adipiscing.\",\n    \"category\": \"Teknologi\",\n    \"status\": \"publish\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/article/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Articles (Paginated)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/article/10/0",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"10",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Article by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/article/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Article",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Judul baru yang sudah diperbarui minimal 20 karakter dan maximal 200 karakter\",\n    \"content\": \"Lorem ipsum dolor sit amet, magna sed in cillum. Velit laborum esse nostrud pariatur aliquip aliquip nostrud. In veniam consectetur veniam velit excepteur id esse laborum anim culpa nostrud.\\nCulpa in aliquip esse minim exercitation aliqua exercitation velit ut laboris voluptate. Occaecat velit officia excepteur duis ut nisi esse id voluptate eiusmod nostrud. Quis esse ad laboris sed consequat deserunt velit quis in labore culpa. Ex adipiscing adipiscing ut laboris eiusmod et laborum eiusmod do aliqua.\",\n    \"category\": \"Teknologi\",\n    \"status\": \"draft\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/article/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Article",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/article/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
